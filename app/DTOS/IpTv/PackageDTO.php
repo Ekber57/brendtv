@@ -8,6 +8,7 @@ class PackageDTO {
     public $package_name;
     public $officialCredits;
     public $bouquets;
+    public $officialDuration;
 }
 
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("username");
             $table->string("password");
             $table->json("bouquets");
+            $table->dateTime("exp_date");
             $table->smallInteger("status");
             $table->timestamps();
         });

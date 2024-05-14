@@ -20,6 +20,7 @@ return new class extends Migration
             // $table->unsignedBigInteger("parent_user");
             $table->float("original_official_credits",100,2);
             $table->float("official_credits",100,2);
+            $table->smallInteger("official_duration");
             $table->timestamps();
         });
     }

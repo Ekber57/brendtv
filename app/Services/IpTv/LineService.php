@@ -15,6 +15,7 @@ class LineService {
             "username" => $nntvLineDTO->username,
             "bouquets" => json_encode($nntvLineDTO->bouquets),
             "package_name" => $nntvLineDTO->package_name,
+            "exp_date" => $nntvLineDTO->expDate,
             "status" => 0
         ]);
     }

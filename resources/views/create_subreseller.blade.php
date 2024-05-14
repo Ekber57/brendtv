@@ -215,6 +215,8 @@
                                                 <input type="hidden" value="{{ $package->id }}" name="package_id[]">
                                                 <input type="hidden" value="{{ $package->official_credits }}"
                                                     name="original_official_credits[]">
+
+                                                <input type="hidden" name="official_duration[]" value="{{$package->official_duration}}"
                                             </td>
                                         </tr>
                                     @endforeach

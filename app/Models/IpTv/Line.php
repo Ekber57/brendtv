@@ -10,6 +10,7 @@ class Line extends Model
     use HasFactory;
     protected $fillable = [
         "user_id",
+        "exp_date",
         "owner_id",
         "package_id",
         "bouquets",

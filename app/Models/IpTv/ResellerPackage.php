@@ -14,6 +14,7 @@ class ResellerPackage extends Model
         'user_id',
         'original_official_credits',
         'official_credits',
-        'bouquets'
+        'bouquets',
+        'official_duration'
     ];
 }

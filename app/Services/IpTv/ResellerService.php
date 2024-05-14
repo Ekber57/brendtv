@@ -44,7 +44,7 @@ class ResellerService {
             $packageDTO->userId = $package->user_id;
             $packageDTO->originalOfficialCredits = $package->original_official_credits;
             $packageDTO->bouquets = json_decode($package->bouquets);
-            
+            $packageDTO->officialDuration = $package->official_duration;
             array_push($packages,$packageDTO);
         }
         return $packages;
@@ -59,6 +59,7 @@ class ResellerService {
             'package_name' => $packageDTO->package_name,
             'original_official_credits' => $packageDTO->originalOfficialCredits,
             "bouquets" => $packageDTO->bouquets,
+            "official_duration" => $packageDTO->officialDuration
         
         ]);
     }

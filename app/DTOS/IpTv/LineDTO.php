@@ -10,6 +10,7 @@ class LineDTO {
     public $password;
     public $package_name;
     public $status;
+    public $expDate;
 }
 
 

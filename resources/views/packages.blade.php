@@ -77,8 +77,11 @@
                 @else
                 <input type="hidden" value="{{$package->official_credits}}" name="original_official_credits[]">
                 @endif
-
-              
+                @if (isset($package->official_duration)) 
+                <input type="hidden" name="official_duration[]" value="{{$package->official_duration}}"
+                @else
+                <input type="hidden" name="official_duration[]" value="{{$package->officialDuration}}"
+                @endif
                     </td>
                  </tr>
               

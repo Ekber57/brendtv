@@ -114,6 +114,7 @@ class PackageAction
         for($i = 0; $i <  count($request->package_name);$i++) {
             $packageDTO = new PackageDTO();
             $packageDTO->userId = $user->id;
+            $packageDTO->officialDuration = $request->official_duration[$i];
             $packageDTO->package_name = $this->createPackageName($request->package_name[$i],$request->offical_credits[$i]);
             $packageDTO->bouquets = json_encode( $request->bouquets[$i]);
             $packageDTO->officialCredits = $request->offical_credits[$i];
@@ -131,6 +132,7 @@ class PackageAction
         $this->packageService->clear($user);
         for($i = 0; $i <  count($request->package_name);$i++) {
             $packageDTO = new PackageDTO();
+            $packageDTO->officialDuration = $request->official_duration[$i];
             $packageDTO->userId = $user->id;
             $pkcName = $this->trimPackgeNameOnString($request->package_name[$i]);
             $packageDTO->package_name = $this->createPackageName($pkcName,$request->offical_credits[$i]);
