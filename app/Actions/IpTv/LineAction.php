@@ -21,6 +21,7 @@ use App\externalAPIs\IpTv\PackagesAPI;
 use App\Services\IpTv\CashbackService;
 use App\Services\IpTv\UserBindingService;
 use App\Http\Requests\IpTv\LineCreateRequest;
+use Carbon\Carbon;
 
 class LineAction
 {
@@ -104,13 +105,13 @@ class LineAction
     public function addLine(LineCreateRequest $lineCreateRequest)
     {
 
-        
-
-
+        $expDate = Carbon::now();
+        $expDate->addMonth($lineCreateRequest->official_duration);
         DB::beginTransaction();
         try {
             $lineDTO = new LineDTO();
             $lineDTO->ownerId = Auth::user()->id;
+            $lineDTO->expDate = $expDate;
             $selectedBouquets = [];
             $lineDTO->packageId  = $lineCreateRequest->package_id;
         

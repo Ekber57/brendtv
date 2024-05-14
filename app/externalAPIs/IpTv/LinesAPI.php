@@ -16,7 +16,7 @@ class LinesAPI extends BaseNntvAPI
             "member_id=" => $nntvLineDTO->ownerId,
             "package_id=" => $nntvLineDTO->packageId,
             "bouquets_selected=" => json_encode($nntvLineDTO->bouquets),
-            // "reseller_notes=" => $nntvLineDTO->resellerNotes
+            "exp_date="=> $nntvLineDTO->expDate
         ];
         $paramStrings = array_map(function ($key, $value) {
             return $key . urlencode($value);

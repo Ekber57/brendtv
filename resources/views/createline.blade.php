@@ -138,6 +138,7 @@
             <div class="col-lg">
                <input value="0" id="package_name" name="package_name" type="hidden">
                <input value="0" id="enc_price" name="enc_price" type="hidden">
+               <input value="0" id="official_duration" name="official_duration" type="hidden">
 
                <input value="[]" id="bouquet_names" name="bouquet_names" type="hidden">
                 <button  class="form-control form-control-sm  bg-success" style="color: white" placeholder=" {{ __('messages.create_new_account') }}" type="submit">{{ __('messages.create_new_account') }}</button>
@@ -181,6 +182,12 @@ var packages = {
       @endforeach
    ],
    encpid{{$p->id}}:"{{$p->enc_price}}",
+   @if (isset($p->officialDuration))
+   duration{{$p->id}}:"{{$p->officialDuration}}",
+   @else   
+   duration{{$p->id}}:"{{$p->official_duration}}",
+   @endif
+
    @endforeach
 }
 
@@ -189,12 +196,15 @@ function changeBouqets() {
 $('#bouquetstable').empty()
 let package = $("#bouquets").val()
 let pack_name = $("#package_name")
+let duration = $("#official_duration")
 let enc_i = $("#enc_price")
 let c = packages["id"+package]
-
+let dr = packages["duration" + package]
+duration.val(dr)
 c.forEach(function(bouquet){
    if(pack_name.val() == "0") {
       pack_name.val(bouquet.package_name)
+  
    }
    if(enc_i.val() == "0") {
       enc_i.val(packages["encpid"+package])
