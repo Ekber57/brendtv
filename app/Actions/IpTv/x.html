@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style <!--Import Google Icon Font-->
+    /* fallback */
+    @font-face {
+      font-family: 'Material Icons';
+      font-style: normal;
+      font-weight: 400;
+      src: url(http://istixana.ru/assets/html/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+    }
+
+    .material-icons {
+      font-family: 'Material Icons';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+  <link rel="stylesheet" href="http://istixana.ru/assets/html/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-wrapper" style="background-color: #f6f6f5;">
+      <a href="#" class="brand-logo"><img src="http://istixana.ru/assets/images/logo.png" height="68" width="300"></a>
+
+    </div>
+  </nav>
+
+
+  <!-- İnput -->
+
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">swap_calls </i>
+          <input oninput="calculate()" id="icon_prefix" type="text" class="validate">
+          <label for="icon_prefix">Uzunluq </label>
+        </div>
+        <div class="input-field col s6">
+          <i class="material-icons prefix">swap_calls </i>
+          <input oninput="calculate()" id="ps" type="text" class="validate">
+          <label for="ps">Parnik sayı </label>
+        </div>
+
+      </div>
+    </form>
+  </div>
+  <!--  Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>Şəkil</th>
+        <th>Material</th>
+        <th>Say</th>
+      </tr>
+    </thead>
+
+    <tbody id="values">
+
+    </tbody>
+  </table>
+
+  <script>
+    const materials = [
+      {
+        name: 'A 1007',
+        spendCount: 4,
+        longness: 2.5,
+        img: 'http://istixana.ru/assets/images/img1.png',
+      },
+      {
+        name: 'A1003 (80×112mm)',
+        spendCount: 4,
+        longness: 40,
+        img: 'http://istixana.ru/assets/images/img34.png',
+      },
+      {
+        name: 'Çəmbər kapitalı',
+        spendCount: 4,
+        longness: 2.5,
+        img: 'http://istixana.ru/assets/images/img2.png',
+      },
+      {
+        name: 'Çifli Profil',
+        spendCount: 3,
+        longness: 100,
+        img: 'http://istixana.ru/assets/images/img35.png',
+      },
+      {
+        name: 'Buynuz',
+        spendCount: 2,
+        longness: 2.5,
+        img: 'http://istixana.ru/assets/images/img3.png',
+      },
+      {
+        name: 'A 1014',
+        spendCount: 6,
+        longness: 2.5,
+        img: 'http://istixana.ru/assets/images/img4.png',
+      },
+      {
+        name: 'A 1010',
+        spendCount: 2,
+        longness: 2.5,
+        img: 'http://istixana.ru/assets/images/img5.png',
+      },
+      {
+        name: '32lik boru calağı',
+        spendCount: 2,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img6.png',
+      },
+      {
+        name: 'A 1008',
+        spendCount: 2,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img7.png',
+      },
+      {
+        name: 'A 1009',
+        spendCount: 2,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img19.png',
+      },
+      {
+        name: 'Kvadrat şayba',
+        spendCount: 6,
+        longness: 2.5,
+        img: 'http://istixana.ru/assets/images/img8.png',
+      },
+      {
+        name: 'Spot ayaq',
+        spendCount: 12,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img9.png',
+      },
+      {
+        name: 'A 1030',
+        spendCount: 2,
+        longness: 2.5,
+        img: 'http://istixana.ru/assets/images/img10.png',
+      },
+      {
+        name: '2.46 X',
+        spendCount: 3,
+        longness: 2.5,
+        img: 'http://istixana.ru/assets/images/img11.png',
+      },
+      {
+        name: '2.16 X',
+        spendCount: 2,
+        longness: 2.5,
+        img: 'http://istixana.ru/assets/images/img11.png',
+      },
+      {
+        name: '1.58 X',
+        spendCount: 2,
+        longness: 2.5,
+        img: 'http://istixana.ru/assets/images/img11.png',
+      },
+      {
+        name: '9.60 X',
+        spendCount: 1,
+        longness: 2.5,
+        img: 'http://istixana.ru/assets/images/img11.png',
+      },
+      {
+        name: '2.89 X',
+        spendCount: 2,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img11.png',
+      },
+      {
+        name: '6.30 X',
+        spendCount: 4,
+        longness: 40,
+        img: 'http://istixana.ru/assets/images/img11.png',
+      },
+      {
+        name: '32lik  havalandırma borusu',
+        spendCount: 2,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img12.png',
+      },
+      {
+        name: '80x80 dirək',
+        spendCount: 2,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img13.png',
+      },
+      {
+        name: 'Baba dirək 80x120',
+        spendCount: 2,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img13.png',
+      },
+      // Havalndirma saci sekli deyismelidir
+      {
+        name: 'Havalndirma saci',
+        spendCount: 2,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img40.png',
+      },
+      {
+        name: 'Uqlavoy Sacı',
+        spendCount: 2,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img36.png',
+      },
+
+
+      // Sekiller deyisecek
+      {
+        name: 'A 1011',
+        spendCount: 2,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img38.png',
+      },
+      {
+        name: 'A 1012',
+        spendCount: 2,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img39.png',
+      },
+
+
+
+
+
+      {
+        name: '70x70 ankaraj',
+        spendCount: 2,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img13.png',
+      },
+      {
+        name: 'Navalça',
+        spendCount: 2,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img14.png',
+      },
+      {
+        name: 'Navalça Başlığı Drenaj',
+        spendCount: 2,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img41.png',
+      },
+      {
+        name: 'Navalça Başlığı Kor',
+        spendCount: 2,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img37.png',
+      },
+      {
+        name: 'Rişel profil',
+        spendCount: 3,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img15.png',
+      },
+      {
+        name: '80x80 dirək kapitalı',
+        spendCount: 8,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img16.png',
+      },
+      {
+        name: 'A 1050',
+        spendCount: 2,
+        longness: 2.5,
+        img: 'http://istixana.ru/assets/images/img17.png',
+      },
+      // // Bu deaktivasiya edildi
+      // {
+      //   name:'ad 16',
+      //   spendCount:3,
+      //   longness : 5,
+      //   img : 'http://istixana.ru/assets/images/img18.png',
+      // },
+
+      {
+        name: 'Petlə',
+        spendCount: 1,
+        longness: 2.5,
+        img: 'http://istixana.ru/assets/images/img20.png',
+      },
+      {
+        name: '45x45 profil',
+        spendCount: 5,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img21.png',
+      },
+      {
+        name: 'K13',
+        spendCount: 9,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img22.png',
+      },
+      {
+        name: 'Makar + dişli',
+        spendCount: 2,
+        longness: 2.5,
+        img: 'http://istixana.ru/assets/images/img23.png',
+      },
+      {
+        name: '3x3 pencere qolu',
+        spendCount: 2,
+        longness: 2,
+        img: 'http://istixana.ru/assets/images/img24.png',
+      },
+      {
+        name: '5.42M Çəmbər borusu',
+        spendCount: 2,
+        longness: 2.5,
+        img: 'http://istixana.ru/assets/images/img28.png',
+      },
+      {
+        name: 'A 1015',
+        spendCount: 8,
+        longness: 50,
+        img: 'http://istixana.ru/assets/images/img29.png',
+      },
+      {
+        name: 'A 1032',
+        spendCount: 2,
+        longness: 2.5,
+        img: 'http://istixana.ru/assets/images/img30.png',
+      },
+      {
+        name: 'A 1005',
+        spendCount: 2,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img31.png',
+      },
+      {
+        name: 'A 1006',
+        spendCount: 2,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img19.png',
+      },
+      {
+        name: 'Gərgi',
+        spendCount: 2,
+        longness: 50,
+        img: 'http://istixana.ru/assets/images/img32.png',
+      },
+      {
+        name: 'A 1001 (80x80)',
+        spendCount: 2,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img33.png',
+      },
+      ////////// Boltlar
+
+      {
+        name: 'M8x120 bolt',
+        spendCount: 16,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img25.png',
+      },
+      {
+        name: 'M8x30 bolt',
+        spendCount: 18,
+        longness: 2.5,
+        img: 'http://istixana.ru/assets/images/img25.png',
+      },
+      {
+        name: 'M8x40 bolt',
+        spendCount: 10,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img25.png',
+      },
+      {
+        name: 'M8x60 bolt',
+        spendCount: 10,
+        longness: 2.5,
+        img: 'http://istixana.ru/assets/images/img25.png',
+      },
+      {
+        name: 'M8x70 bolt',
+        spendCount: 60,
+        longness: 70,
+        img: 'http://istixana.ru/assets/images/img25.png',
+      },
+      {
+        name: 'M8x50 bolt',
+        spendCount: 16,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img25.png',
+      },
+      {
+        name: 'M8x30 mebel boltu',
+        spendCount: 35,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img26.png',
+      },
+      // Qayka
+      {
+        name: 'M8 qayka',
+        spendCount: 110,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img27.png',
+      },
+      {
+        name: 'M6 qayka0',
+        spendCount: 16,
+        longness: 5,
+        img: 'http://istixana.ru/assets/images/img27.png',
+      },
+      // Qayka son
+    ]
+    var parametr = {
+      say: 0
+    }
+
+
+    function calculate() {
+      $('tbody').empty()
+      var longness = parseInt($('#icon_prefix').val());
+      var ps = parseInt($('#ps').val());
+
+      materials.forEach(function (material) {
+        parametr.say = 0;
+        let spendCount = parseInt((longness / material.longness)) * material.spendCount
+
+
+        parametr.say = parseInt(spendCount)
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        if (material.name == "Uqlavoy Sacı") {
+          parametr.say = 30
+        }
+
+
+        if (material.name == "A 1012") {
+          parametr.say = 70
+        }
+
+   
+         Navalca(material, ps, longness)
+        RiselProfil(material, ps, longness)
+        DirekKapitali(material, ps, longness) 
+         CemberKapitali(material, ps, longness) 
+        AltiXOtuz(material, ps, longness)
+         AMinOnBes(material, ps, longness)
+         AMinBir(material, ps, longness)
+         BabaDirek(material, ps, longness)
+        HavalndirmaSaci(material, ps, longness)
+        Ankaraj(material, ps, longness)
+        SeksenXSeksendirek(material, ps, longness)
+        CifliProfil(material, ps, longness)
+         Gergi(material, ps, longness)
+        MinUc(material, ps, longness)
+         Drenaj(material, ps, longness)
+        HavaBorusu(material, ps, longness)
+        psActive(material, ps, longness)
+        
+        // Buklet // paket // line // user
+
+        // 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        let c = " eded"
+        if(material.name == "32lik  havalandırma borusu") {
+          c = " M"
+        }
+
+
+        addRow(material.img, parametr.say + c, material.name)
+      })
+    }
+    function addRow(img, say, ad) {
+
+      // Create a new row
+      var newRow = $('<tr>');
+
+      // Create three new columns and append them to the row
+      var col1 = $('<td>').text(say);
+      var col2 = $('<td>').text(ad);
+      var col3 = $('<td>');
+      var image = $('<img>').attr('width', 150).attr('height', 100).attr('src', img).attr('alt', 'Example Image');
+      if (image.attr('src') == '/images/img21.png') {
+        image.attr('height', 200)
+        image.attr('width', 200)
+      }
+      col3.append(image);
+
+
+      newRow.append(col3, col2, col1,);
+
+      // Append the row to the tbody
+
+      $('tbody').append(newRow);
+    }
+
+
+
+function psActive(material, ps, longness) {
+  if(
+    material.name == "A 1007" ||
+    material.name == "Buynuz" ||
+    material.name == "A 1014" ||
+    material.name == "A 1010" ||
+    material.name == "32lik boru calağı" ||
+    material.name == "Kvadrat şayba" ||
+    material.name == "Spot ayaq" ||
+    material.name == "A 1030" ||
+    material.name == "2.46 X" ||  
+    material.name == "2.16 X" ||
+    material.name == "2.89 X" ||
+    material.name == "1.58 X" ||
+    material.name == "9.60 X" ||
+    material.name == "A 1050" ||
+    material.name == "Petlə" ||
+    material.name == "45x45 profil" ||
+    material.name == "K13" ||
+    material.name == "Makar + dişli" ||
+    material.name == "3x3 pencere qolu" ||
+    material.name == "A 1032" ||
+    material.name == "5.42M Çəmbər borusu" ||
+    material.name == "A 1008" ||
+    material.name == "A 1009" ||
+    material.name == "A 1005" ||
+    material.name == "A 1006")
+{
+  let spendCount = parseInt((longness / material.longness))
+  if(ps > 1)  {
+    parametr.say = parseInt(spendCount) * material.spendCount * ps
+  }
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function HavalndirmaSaci(material, ps, longness) {
+
+      if (material.name == "Havalndirma saci") {
+        let msc = 4;
+
+        if (ps > 1) {
+          msc = 4 * ps
+          parametr.say = msc
+        }
+        else {
+          parametr.say = 4
+        }
+      }
+    }
+
+    function Drenaj(material, ps, longness) {
+
+      if (material.name == "Navalça Başlığı Drenaj" || material.name == "Navalça Başlığı Kor") {
+        let msc = 2;
+
+        if (ps > 1) {
+          msc = 2 + (ps - 1)
+          parametr.say = msc
+        }
+        else {
+          parametr.say = 2
+        }
+      }
+    }
+
+    function BabaDirek(material, ps, longness) {
+
+      if (material.name == "Baba dirək 80x120") {
+        let msc = 4;
+
+        if (ps > 1) {
+          msc = 4 * ps
+          parametr.say = msc
+        }
+        else {
+          parametr.say = 4
+        }
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function AltiXOtuz(material, ps, longness) {
+      let msc = 0
+      let ml = 50
+      if (material.name == "6.30 X") {
+        if ((longness < 50) && (ps < 1)) {
+          parametr.say = 0
+        }
+
+
+
+        let y = 0
+        let spendCount = parseInt((longness / ml))
+        let x = 8 + (spendCount - 1) * 4
+        if (ps > 1) {
+          if (spendCount > 1) {
+            y = ((4 + spendCount) + (spendCount - 2))
+          }
+          else {
+            y = (ps - 1) * 4
+
+
+          }
+        }
+        else {
+          if (longness == 50) {
+            msc = 8
+          }
+        }
+        if (ps > 1) {
+          msc = x + (y * (ps - 1))
+        }
+        else {
+          msc = x
+        }
+
+        parametr.say = msc
+
+      }
+    }
+
+
+
+    function AMinOnBes(material, ps, longness) {
+      let msc = 0
+      let ml = 50
+      if (material.name == "A 1015") {
+        if ((longness < 50) && (ps < 1)) {
+          parametr.say = 0
+        }
+
+
+        if (longness == 50) {
+          msc = 28
+        }
+
+        let y = 0
+        let spendCount = parseInt((longness / ml))
+        let x = 28 + (spendCount - 1) * 8
+        if (ps > 1) {
+          if (spendCount > 1) {
+            y = (ps - 1) * x
+          }
+          else {
+            y = (ps - 1) * 28
+
+          }
+        }
+
+        msc = x + y
+
+        parametr.say = msc
+
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function SeksenXSeksendirek(material, ps, longness) {
+
+      /////  DirekKapitali hesablama
+      if (material.name == "80x80 dirək") {
+        let msc = 6;
+        let ml = 5;
+        if (ps > 1) {
+          msc = 6 + ((ps - 1) * 2)
+          ml = 5;
+          parametr.say = msc
+          let spendCount = parseInt((longness / ml))
+          if (longness == 5) {
+
+            parametr.say = msc
+          }
+          else {
+            let x = ((spendCount - 1) * 4) + 6
+            let y = ((ps - 1) * spendCount) + (ps - 1)
+            parametr.say = x + y
+          }
+        }
+
+
+        else {
+          msc = 6;
+          ml = 5;
+          let spendCount = parseInt((longness / ml))
+          if (spendCount == 1) {
+            parametr.say = 6
+            return 0
+          }
+          spendCount = spendCount - 1
+          spendCount = (spendCount * 4) + 6
+          parametr.say = parseInt(spendCount)
+        }
+      }
+    }
+
+
+
+    function Ankaraj(material, ps, longness) {
+
+      /////  DirekKapitali hesablama
+      if (material.name == "70x70 ankaraj") {
+        let msc = 6;
+        let ml = 5;
+        if (ps > 1) {
+          msc = 6 + ((ps - 1) * 2)
+          ml = 5;
+          parametr.say = msc
+          let spendCount = parseInt((longness / ml))
+          if (longness == 5) {
+
+            parametr.say = msc
+          }
+          else {
+            let x = ((spendCount - 1) * 4) + 6
+            let y = ((ps - 1) * spendCount) + (ps - 1)
+            parametr.say = x + y
+          }
+        }
+
+
+        else {
+          msc = 6;
+          ml = 5;
+          let spendCount = parseInt((longness / ml))
+          if (spendCount == 1) {
+            parametr.say = 6
+            return 0
+          }
+          spendCount = spendCount - 1
+          spendCount = (spendCount * 4) + 6
+          parametr.say = parseInt(spendCount)
+        }
+      }
+    }
+    // Duzeldi
+    function MinUc(material, ps, longness) {
+
+      /////  DirekKapitali hesablama
+      // if (material.name == "80x80 dirək kapitalı") {
+      let msc = 0
+      let ml = 50
+      if (material.name == "A1003 (80×112mm)") {
+    
+
+
+
+        let y = 0
+        let spendCount = parseInt((longness / ml))
+   
+        let x = 8 + (spendCount - 1) * 8
+        if (ps > 1) {
+         y = (4 + ((spendCount - 1) * 4)) * (ps - 1)
+          
+          if(longness == 50){
+            y = 4 * (ps - 1)
+          }
+          msc = x + y
+        }
+        else {
+          msc = x 
+        }
+        parametr.say = msc
+        if ((longness < 50) && isNaN(ps)) {
+          parametr.say = 0
+        }
+      }
+    }
+    // Duzeldi
+    function HavaBorusu(material, ps, longness) {
+
+      /////  DirekKapitali hesablama
+      // if (material.name == "80x80 dirək kapitalı") {
+      let msc = 0
+      let ml = 5
+      if (material.name == "32lik  havalandırma borusu") {
+
+        let y = 0
+        let spendCount = parseInt((longness / ml))
+   
+        let x = 10 + (spendCount - 1) * 10
+        if (ps > 1) {
+         y = x * (ps - 1)
+        msc = x + y
+        }
+        else {
+          msc = x 
+        }
+        parametr.say = msc
+        if ((longness < 5) && isNaN(ps)) {
+          parametr.say = 0
+        }
+      }
+    }
+    // Duzeldi
+    function Gergi(material, ps, longness) {
+
+      /////  DirekKapitali hesablama
+      // if (material.name == "80x80 dirək kapitalı") {
+      let msc = 0
+      let ml = 50
+      if (material.name == "Gərgi") {
+    
+
+
+
+        let y = 0
+        let spendCount = parseInt((longness / ml))
+   
+        let x = 4 + (spendCount - 1) * 4
+        if (ps > 1) {
+         y = (2 + ((spendCount - 1) * 2)) * (ps - 1)
+          
+          if(longness == 50){
+            y = 2 * (ps - 1)
+          }
+          msc = x + y
+        }
+        else {
+          msc = x 
+        }
+        parametr.say = msc
+        if ((longness < 50) && isNaN(ps)) {
+          parametr.say = 0
+        }
+      }
+    }
+    // Duzeldi
+    function CifliProfil(material, ps, longness) {
+
+      /////  DirekKapitali hesablama
+      // if (material.name == "80x80 dirək kapitalı") {
+      let msc = 0
+      let ml = 100
+      if (material.name == "Çifli Profil") {
+    
+
+
+
+        let y = 0
+        let spendCount = parseInt((longness / ml))
+   
+        let x = 6 + (spendCount - 1) * 6
+        if (ps > 1) {
+          y = 6 * (ps-1)
+          msc = x + y 
+        }
+        else {
+          msc = x 
+        }
+        parametr.say = msc
+        if ((longness < 100) && isNaN(ps)) {
+          parametr.say = 0
+        }
+      }
+    }
+    // Duzeldi
+    function CemberKapitali(material, ps, longness) {
+
+      /////  DirekKapitali hesablama
+      // if (material.name == "80x80 dirək kapitalı") {
+      let msc = 0
+      let ml = 5
+      if (material.name == "Çəmbər kapitalı") {
+        if ((longness < 5) && (ps < 1)) {
+          parametr.say = 0
+        }
+
+
+
+        let y = 0
+        let spendCount = parseInt((longness / ml))
+        let x = 8 * spendCount 
+        if (ps > 1) {
+          if (spendCount > 1) {
+            y = x * (ps - 1)
+          }
+          else {
+          
+          }
+        }
+        else {
+          if (longness == 5) {
+            x = 8
+            y = 8 * (ps - 1)
+          }
+     
+        }
+        if (ps > 1) {
+          if (longness == 5) {
+            y = 8 * (ps - 1)
+          }
+          msc = x + y
+        }
+        else {
+          msc = x
+        }
+
+        parametr.say = msc
+
+      }
+    }
+
+    // ***********************
+    // Duzeldi
+    function DirekKapitali(material, ps, longness) {
+
+      /////  DirekKapitali hesablama
+      // if (material.name == "80x80 dirək kapitalı") {
+      let msc = 0
+      let ml = 5
+      if (material.name == "80x80 dirək kapitalı") {
+        if ((longness < 5) && (ps < 1)) {
+          parametr.say = 0
+        }
+
+
+
+        let y = 0
+        let spendCount = parseInt((longness / ml))
+        let x = 12 + (spendCount - 1) * 8 
+        if (ps > 1) {
+          if (spendCount > 1) {
+            y = (6 + ((spendCount - 1) * 4)) * (ps - 1)
+          }
+          else {
+          
+          }
+        }
+        else {
+          if (longness == 5) {
+            msc = 12
+            y = 6 * (ps - 1)
+          }
+     
+        }
+        if (ps > 1) {
+          if (longness == 5) {
+            y = 6 * (ps - 1)
+          }
+          msc = x + y
+        }
+        else {
+          msc = x
+        }
+
+        parametr.say = msc
+
+      }
+    }
+
+    // ***********************
+
+
+
+
+
+
+
+
+
+
+
+
+    function RiselProfil(material, ps, longness) {
+
+      /////  Navalca hesablama
+      if (material.name == "Rişel profil") {
+        let msc = 0;
+        let ml = 0;
+        if (ps > 1) {
+          msc = material.spendCount + (ps - 1) * 2;
+          ml = 5;
+          let spendCount = parseInt((longness / ml)) * msc
+          parametr.say = parseInt(spendCount)
+        }
+      }
+    }
+
+    function AMinBir(material, ps, longness) {
+
+      /////  Navalca hesablama
+      if (material.name == "A 1001 (80x80)") {
+        let msc = 0;
+        let ml = 0;
+        if (ps > 1) {
+          msc = 1 + ps;
+          ml = 5;
+          let spendCount = parseInt((longness / ml)) * msc
+          parametr.say = parseInt(spendCount)
+        }
+      }
+    }
+    function Navalca(material, ps, longness) {
+
+      /////  Navalca hesablama
+      if (material.name == "Navalça") {
+        let msc = 0;
+        let ml = 0;
+        if (ps > 1) {
+          msc = ps + 1;
+          ml = 5;
+          let spendCount = parseInt((longness / ml)) * msc
+          parametr.say = parseInt(spendCount)
+        }
+      }
+    }
+
+
+
+
+
+    // Navalca hesablama son
+
+
+
+
+
+  </script>
+
+
+  <script src="http://istixana.ru/assets/jss/materialize.min.js"></script>
+  <script src="http://istixana.ru/assets/jss/jquery.js"></script>
+
+</body>
+
+</html>
