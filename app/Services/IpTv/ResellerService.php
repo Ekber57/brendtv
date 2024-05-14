@@ -76,6 +76,10 @@ class ResellerService {
         $reseller->save();
     }
 
+    public function getGroupId(User $user) {
+        return Reseller::where("user_id","=",$user->id)->first()->group_id;
+    }
+
 
 
 

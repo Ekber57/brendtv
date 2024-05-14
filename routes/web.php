@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\App;
 use App\externalAPIs\IpTv\CustomAPI;
 use Illuminate\Support\Facades\Auth;
 use App\Actions\IpTv\DashboardAction;
+use App\Actions\IpTv\OnlineLineAction;
 use App\Services\IpTv\BouquetService;
 use Illuminate\Support\Facades\Route;
 use App\externalAPIs\ipTv\BouquetsAPI;
@@ -21,6 +22,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IpTv\LineController;
 use App\Http\Controllers\IpTv\ResellerController;
 use App\Http\Controllers\IpTv\ResellerEditController;
+use App\Services\IpTv\LineService;
+use App\Services\IpTv\ResellerService;
+use App\Services\IpTv\UserBindingService;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,14 +37,7 @@ use App\Http\Controllers\IpTv\ResellerEditController;
 |
 */
 Route::get("/",function() {
-    $userDTO = new UserDTO;
-    $userDTO->username  = "filmerdan 2";
-    $userDTO->password = "ekber44014";
-    $userDTO->ownerId = 51;
-    $userDTO->groupId = 3;
-    (new UserAPi())->addUser($userDTO);
-
-
+(new OnlineLineAction(new ResellerService(),new LineService(),new UserBindingService()))->findLinesForReseller();
 // return (new BouquetAction(new BouquetService(), new BouquetsAPI()))->sync();
 });
 

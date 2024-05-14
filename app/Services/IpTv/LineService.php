@@ -42,6 +42,11 @@ class LineService {
     //     return Line::where("")
     // }
 
+
+    public function getLinesForOnlain(array $ids) {
+        return Line::whereIn("owner_id",$ids)->get();
+    }
+
 }
 
 
